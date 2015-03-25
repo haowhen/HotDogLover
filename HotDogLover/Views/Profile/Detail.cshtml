@@ -4,7 +4,7 @@
 }
 
 <h2>Hot Dog Lover Profile</h2>
-<hr/>
+<hr />
 
 <div class="row">
     <div class="col-md-3">
@@ -24,13 +24,16 @@
         <br />
         <p>(This is your personal statement Bio)</p>
 
-        <h3>Past Dogs: @Html.ActionLink("Add", "Create", "HotDog", new { profileId = Model.Profile.Id }, new { @class = "btn btn-default btn-sm" }) </h3> 
-        @foreach (var hotDog in Model.Profile.HotDogs)
-            {
-                <ul>
-                    <li>@hotDog.Name (@hotDog.Date.ToShortDateString())</li>
-                </ul>
-            }
+        <h3>Past Dogs: @Html.ActionLink("Add", "Create", "HotDog", new { profileId = Model.Profile.Id }, new { @class = "btn btn-default btn-sm" }) </h3>
+        @if (Model.Profile.HotDogs.Any())
+        {
+            foreach (var hotDog in Model.Profile.HotDogs)
+             {
+                 <ul>
+                     <li>@hotDog.Name (@hotDog.Date.ToShortDateString())</li>
+                 </ul>
+             }
+        }
     </div>
     <div class="col-md-1">
         @Html.ActionLink("Edit", "Update", new { id = Model.Profile.Id }, new { @class = "btn btn-default btn-sm" })

@@ -7,18 +7,19 @@
 <hr/>
 
 <div class="container">
+    <table id="profileTable" class="stripe" style="width:100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Favorite Hot Dog</th>
+                <th>Last Place Ate</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        @foreach (var profile in Model)
+        {
 
-    @foreach (var profile in Model)
-    {
-        <table id="profileTable" class="stripe" style="width:100%">
-            <thead>
-                <tr>
-                    <th>@Html.DisplayNameFor(m => m.Name)</th>
-                    <th>@Html.DisplayNameFor(m => m.FavoriteDog)</th>
-                    <th>@Html.DisplayNameFor(m => m.LastAte)</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
+           
             <tbody>
                 <tr>
                     <td>@profile.Name</td>
@@ -27,8 +28,9 @@
                     <td>@Html.ActionLink("Detail", "Detail", new { id = @profile.Id }, new { @class = "btn btn-default" })</td>
                 </tr>
             </tbody>
-        </table>
-    }
+
+        }
+    </table>
 </div>
 
 

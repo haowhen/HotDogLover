@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Policy;
 using System.Web;
+using System.Web.UI.WebControls;
 using AutoMapper;
 using HotDogLover.Models.HotDog;
 using HotDogLover.Models.Profile;
@@ -38,6 +39,25 @@ namespace HotDogLover.Service
             }
 
             return foundProfile;
+        }
+
+        public void CreateProfileViewModel(ProfileCreateViewModel viewModel)
+        {
+            
+            var p = new Profile
+            {
+                Id = Guid.NewGuid(),
+                Name = viewModel.Name,
+                Description = viewModel.Description,
+                LastAte = viewModel.LastAte,
+                FavoriteDog = viewModel.FavoriteDog,
+                HotDogs = new List<HotDog>()
+                {
+                    new HotDog() {Date = viewModel.FavoriteDog.Date, Id = Guid.NewGuid(), Name = viewModel.FavoriteDog.Name}
+                }
+            };
+
+            _profiles.Add(Mapper.Map<Profile>(p));
         }
 
         public ProfileUpdateViewModel GetProfileUpdateViewModel(Guid id)

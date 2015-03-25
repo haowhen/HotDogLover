@@ -24,6 +24,15 @@ namespace HotDogLover.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Create(ProfileCreateViewModel viewModel)
+        {
+            var service = new ProfileService();
+            service.CreateProfileViewModel(viewModel);
+
+            return RedirectToAction("Index");
+        }
+
         public ActionResult Detail(Guid id)
         {
             var service = new ProfileService();
