@@ -1,0 +1,38 @@
+﻿@model HotDogLover.Models.Profile.ProfileViewModel
+@{
+    ViewBag.Title = "Detail";
+}
+
+<h2>Hot Dog Lover Profile</h2>
+<hr/>
+
+<div class="row">
+    <div class="col-md-3">
+        <img src="../../Images/hot-dog-06.jpg" alt="Hot Dog Image" style="width: 75%; height: 60%; margin-top: 20px;" />
+        <ul>
+            <li>Favorite Dog: @Html.DisplayFor(m => m.Profile.FavoriteDog.Name)</li>
+            <li>Last Ate: @Html.DisplayFor(m => m.Profile.LastAte)</li>
+            <li>Date: @Html.DisplayFor(m => m.Profile.FavoriteDog.Date, "{0:MM/dd/yyyy}")</li>
+        </ul>
+
+    </div>
+
+    <div class="col-md-8">
+        <h3>@Html.DisplayFor(m => m.Profile.Name)</h3>
+        <br />
+        <p>@Html.DisplayFor(m => m.Profile.Description)</p>
+        <br />
+        <p>(This is your personal statement Bio)</p>
+
+        <h3>Past Dogs: @Html.ActionLink("Add", "Create", "HotDog", new { profileId = Model.Profile.Id }, new { @class = "btn btn-default btn-sm" }) </h3> 
+        @foreach (var hotDog in Model.Profile.HotDogs)
+            {
+                <ul>
+                    <li>@hotDog.Name (@hotDog.Date.ToShortDateString())</li>
+                </ul>
+            }
+    </div>
+    <div class="col-md-1">
+        @Html.ActionLink("Edit", "Update", new { id = Model.Profile.Id }, new { @class = "btn btn-default btn-sm" })
+    </div>
+</div>

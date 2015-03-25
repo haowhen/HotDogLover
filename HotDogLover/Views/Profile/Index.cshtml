@@ -1,0 +1,56 @@
+﻿@model IEnumerable<HotDogLover.Models.Profile.ProfileIndexViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Profiles</h2>
+<hr/>
+
+<div class="container">
+
+    @foreach (var profile in Model)
+    {
+        <table id="profileTable" class="stripe" style="width:100%">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(m => m.Name)</th>
+                    <th>@Html.DisplayNameFor(m => m.FavoriteDog)</th>
+                    <th>@Html.DisplayNameFor(m => m.LastAte)</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@profile.Name</td>
+                    <td>@profile.FavoriteDog</td>
+                    <td>@profile.LastAte</td>
+                    <td>@Html.ActionLink("Detail", "Detail", new { id = @profile.Id }, new { @class = "btn btn-default" })</td>
+                </tr>
+            </tbody>
+        </table>
+    }
+</div>
+
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#profileTable").DataTable({
+            "dom": '<"toolbar">frtip',
+            "filter": false,
+            "paging": false,
+            "info" : false,
+
+            "aoColumns": [
+                null,
+                null,
+                null,
+                { "bSortable": false }
+            ]
+        });
+
+        $("div.toolbar").html('@Html.ActionLink("Add New Profile", "Create", "Profile", null, new { @class = "btn btn-primary btn-sm", @style = "margin-top: 20px" })');
+    });
+</script>

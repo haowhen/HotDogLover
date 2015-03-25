@@ -1,0 +1,22 @@
+﻿@model HotDogLover.Models.Profile.ProfileCreateViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Hot Dog Lover Profile</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="row">
+        <div class="col-md-4">
+            <img src="../../Images/hot-dog-06.jpg" alt="Hot Dog Image" style="width: 50%; height: 50%"/>
+        </div>
+        
+        <div class="col-md-8">
+            
+        </div>
+    </div>
+}
